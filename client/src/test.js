@@ -1,4 +1,4 @@
-const Greet = () => {
+const Greeqwertyuiot = () => {
     return <h1>From Greet Function!</h1>;
   };
   
