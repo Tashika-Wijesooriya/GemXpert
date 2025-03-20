@@ -1,12 +1,18 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './index.css'; 
-import Cart from "./addToCart/components/Cart";
+import CartPage from "./addToCart/pages/CartPage";
+import CheckoutPage from "./addToCart/pages/CheckoutPage";
+import "./index.css";
+import toast, { Toaster } from "react-hot-toast";
+
 
 function App() {
   return (
     <BrowserRouter>
+      <Toaster position="top-right" />
       <Routes>
-        <Route path="/cart/*" element={<Cart />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </BrowserRouter>
   );
