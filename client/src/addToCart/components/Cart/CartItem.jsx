@@ -1,4 +1,3 @@
-// src/addToCart/components/Cart/CartItem.jsx
 import React from "react";
 import CartActions from "./CartActions";
 
@@ -14,7 +13,6 @@ const CartItem = ({ item, onRemove, onUpdateQuantity }) => {
         <div className="flex flex-col">
           <p className="text-lg font-semibold text-gray-800">{item.name}</p>
 
-          {/* Added price for each product with styling */}
           <p className="text-sm text-gray-600">Rs. {item.price}</p>
         </div>
       </div>

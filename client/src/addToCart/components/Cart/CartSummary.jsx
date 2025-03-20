@@ -1,4 +1,3 @@
-// src/addToCart/components/Cart/CartSummary.jsx
 import React from "react";
 
 const CartSummary = ({ totalAmount }) => {
