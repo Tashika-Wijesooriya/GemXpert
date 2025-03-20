@@ -1,8 +1,14 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './index.css'; 
+import Cart from "./addToCart/components/Cart";
+
 function App() {
   return (
-    <>
-      <h1>Hello</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/cart/*" element={<Cart />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
