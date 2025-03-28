@@ -200,6 +200,21 @@ const markOrderAsDelivered = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const deleteOrder = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      res.status(404);
+      throw new Error("Order not found");
+    }
+
+    await Order.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Order deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 export {
   createOrder,
@@ -211,4 +226,5 @@ export {
   findOrderById,
   markOrderAsPaid,
   markOrderAsDelivered,
+  deleteOrder,
 };
