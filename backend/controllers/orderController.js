@@ -215,6 +215,44 @@ const deleteOrder = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+// Function to generate the sales report
+const generateSalesReport = async (req, res) => {
+  try {
+    // Fetch all orders (you can customize this query if needed)
+    const orders = await Order.find({});
+
+    // Prepare data for the Excel file
+    const reportData = orders.map((order) => ({
+      orderId: order._id,
+      customer: order.user.name,
+      date: order.createdAt.toISOString().split("T")[0], // Format the date
+      totalAmount: order.totalPrice,
+      paymentStatus: order.isPaid ? "Paid" : "Unpaid",
+      deliveryStatus: order.isDelivered ? "Delivered" : "Pending",
+    }));
+
+    // Create a new workbook and add a sheet
+    const wb = xlsx.utils.book_new();
+    const ws = xlsx.utils.json_to_sheet(reportData);
+    xlsx.utils.book_append_sheet(wb, ws, "Sales Report");
+
+    // Write the workbook to a file in the server
+    const filePath = path.join(__dirname, "sales-report.xlsx");
+    xlsx.writeFile(wb, filePath);
+
+    // Send the file as a response
+    res.download(filePath, "sales-report.xlsx", (err) => {
+      if (err) {
+        res.status(500).send("Error downloading the file");
+      }
+      // Delete the file after sending
+      fs.unlinkSync(filePath);
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Failed to generate the report");
+  }
+};
 
 export {
   createOrder,
@@ -227,4 +265,5 @@ export {
   markOrderAsPaid,
   markOrderAsDelivered,
   deleteOrder,
+  generateSalesReport,
 };

@@ -9,6 +9,7 @@ import {
 } from "../../redux/api/orderApiSlice";
 import AdminMenu from "./AdminMenu";
 import { FaEye, FaTrash } from "react-icons/fa";
+import DownloadReportButton from "../../components/DownloadReportButton"; // Importing the download report button
 
 const OrderList = () => {
   const { data: orders, isLoading, error, refetch } = useGetOrdersQuery();
@@ -186,7 +187,7 @@ const OrderList = () => {
                             <button
                               onClick={() => handleDelete(order._id)}
                               className="text-red-600 hover:text-red-900 transition-colors"
-                              title="Delete Order"
+                              title="Delete"
                             >
                               <FaTrash className="w-5 h-5" />
                             </button>
@@ -196,10 +197,11 @@ const OrderList = () => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="7" className="px-6 py-8 text-center">
-                        <div className="text-gray-500 text-lg font-medium">
-                          No orders match your criteria
-                        </div>
+                      <td
+                        colSpan="7"
+                        className="px-6 py-4 text-center text-sm text-gray-500"
+                      >
+                        No orders found.
                       </td>
                     </tr>
                   )}
@@ -208,6 +210,11 @@ const OrderList = () => {
             </div>
           </div>
         )}
+
+        {/* Download Report Button */}
+        <div className="mt-8">
+          <DownloadReportButton orders={filteredOrders} />
+        </div>
       </div>
     </div>
   );

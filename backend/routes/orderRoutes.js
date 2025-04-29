@@ -12,6 +12,7 @@ import {
   markOrderAsPaid,
   markOrderAsDelivered,
   deleteOrder,
+  generateSalesReport,
 } from "../controllers/orderController.js";
 
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
@@ -34,5 +35,6 @@ router
   .route("/:id")
   .get(authenticate, findOrderById)
   .delete(authenticate, authorizeAdmin, deleteOrder);
+router.get("/download-report", generateSalesReport);
 
 export default router;
