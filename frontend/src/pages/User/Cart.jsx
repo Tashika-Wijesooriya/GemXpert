@@ -36,52 +36,48 @@ const Cart = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#1A1A1A] py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Your Cart</h1>
+          <h1 className="text-3xl font-bold text-gray-300">Your Cart</h1>
           <Link
             to="/"
-            className="text-indigo-600 hover:text-indigo-500 font-medium"
+            className="text-pink-500 hover:text-pink-400 font-medium transition-colors duration-200"
           >
             Continue shopping
           </Link>
         </div>
 
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-          <div className="hidden sm:grid grid-cols-12 bg-gray-50 px-4 py-3 border-b border-gray-200">
-            <div className="col-span-5 text-sm font-medium text-gray-500">
-              PRODUCT
-            </div>
-            <div className="col-span-2 text-sm font-medium text-gray-500">
-              PRICE
-            </div>
-            <div className="col-span-3 text-sm font-medium text-gray-500">
-              QUANTITY
-            </div>
-            <div className="col-span-2 text-sm font-medium text-gray-500">
-              TOTAL
-            </div>
+        <div className="bg-[#2D2D2D] shadow-xl rounded-xl border border-pink-600/20">
+          <div className="hidden sm:grid grid-cols-12 bg-pink-600/10 px-6 py-4 border-b border-pink-600/20">
+            {["PRODUCT", "PRICE", "QUANTITY", "TOTAL"].map((header) => (
+              <div
+                key={header}
+                className="col-span-3 text-sm font-medium text-gray-300 uppercase"
+              >
+                {header}
+              </div>
+            ))}
           </div>
 
           {cartItems.map((item) => (
             <div
               key={item._id}
-              className="grid grid-cols-12 gap-4 px-4 py-6 border-b border-gray-200"
+              className="grid grid-cols-12 gap-4 px-6 py-6 border-b border-pink-600/20 hover:bg-pink-600/5 transition-colors"
             >
               <div className="col-span-12 sm:col-span-5 flex items-center">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-20 h-20 object-cover rounded-lg"
+                  className="w-20 h-20 object-cover rounded-lg border border-gray-600"
                 />
                 <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">
+                  <h3 className="text-lg font-medium text-gray-300">
                     {item.name}
                   </h3>
                   <button
                     onClick={() => removeFromCartHandler(item._id)}
-                    className="mt-2 text-red-600 hover:text-red-500 flex items-center"
+                    className="mt-2 text-red-500 hover:text-red-400 flex items-center transition-colors duration-200"
                   >
                     <FaTrashAlt className="w-4 h-4 mr-1" />
                     <span className="text-sm">Remove</span>
@@ -90,19 +86,19 @@ const Cart = () => {
               </div>
 
               <div className="col-span-12 sm:col-span-2 flex items-center">
-                <p className="text-gray-900">
-                  ${" "}
+                <p className="text-gray-400">
                   {item.price.toLocaleString("en-US", {
-                    minimumFractionDigits: 2,
+                    style: "currency",
+                    currency: "USD",
                   })}
                 </p>
               </div>
 
               <div className="col-span-12 sm:col-span-3 flex items-center">
-                <div className="flex items-center border border-gray-300 rounded-md">
+                <div className="flex items-center border border-pink-600 rounded-md bg-[#1A1A1A]">
                   <button
                     onClick={() => handleUpdateQuantity(item._id, item.qty - 1)}
-                    className="px-3 py-1 text-gray-600 hover:text-gray-900"
+                    className="px-3 py-1 text-pink-500 hover:text-pink-400 transition-colors duration-200"
                   >
                     -
                   </button>
@@ -112,12 +108,12 @@ const Cart = () => {
                     onChange={(e) =>
                       handleUpdateQuantity(item._id, +e.target.value)
                     }
-                    className="w-12 text-center border-0 focus:ring-0"
+                    className="w-12 text-center border-0 bg-transparent text-gray-300 focus:ring-0"
                     min="1"
                   />
                   <button
                     onClick={() => handleUpdateQuantity(item._id, item.qty + 1)}
-                    className="px-3 py-1 text-gray-600 hover:text-gray-900"
+                    className="px-3 py-1 text-pink-500 hover:text-pink-400 transition-colors duration-200"
                   >
                     +
                   </button>
@@ -125,32 +121,31 @@ const Cart = () => {
               </div>
 
               <div className="col-span-12 sm:col-span-2 flex items-center">
-                <p className="text-gray-900 font-medium">
-                  ${" "}
+                <p className="text-gray-300 font-semibold">
                   {(item.price * item.qty).toLocaleString("en-US", {
-                    minimumFractionDigits: 2,
+                    style: "currency",
+                    currency: "USD",
                   })}
                 </p>
               </div>
             </div>
           ))}
 
-          <div className="px-4 py-6">
+          <div className="px-6 py-6">
             <div className="flex justify-end">
               <div className="w-full max-w-xs">
-                <div className="flex justify-between text-base font-medium text-gray-900 mb-3">
+                <div className="flex justify-between text-base font-medium text-gray-300 mb-4 pb-4 border-b border-pink-600/20">
                   <span>Subtotal</span>
                   <span>
-                    ${" "}
                     {totalAmount.toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                    })}{" "}
+                      style: "currency",
+                      currency: "USD",
+                    })}
                   </span>
                 </div>
-                {/* Use button for checkout instead of Link */}
                 <button
                   onClick={checkoutHandler}
-                  className="w-full bg-indigo-600 text-white px-6 py-3 rounded-md shadow-sm hover:bg-indigo-700 flex items-center justify-center text-base font-medium"
+                  className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-200 flex items-center justify-center"
                 >
                   CHECK OUT
                 </button>

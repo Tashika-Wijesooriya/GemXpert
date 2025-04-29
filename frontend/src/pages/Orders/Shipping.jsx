@@ -59,116 +59,119 @@ const Shipping = () => {
   }, [navigate, shippingAddress]);
 
   return (
-    <div className="p-6">
-      <ProgressSteps step1 step2 />
-      <div className="mt-8 flex justify-center">
-        <form onSubmit={submitHandler} className="max-w-md w-full">
-          <h1 className="text-2xl font-semibold mb-6 text-gray-800">
-            Shipping
-          </h1>
+    <div className="container mx-auto px-4 py-8 min-h-screen bg-[#1A1A1A]">
+      <div className="max-w-md mx-auto">
+        <ProgressSteps step1 step2 className="text-pink-500" />
 
-          {/* Address Field */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Address
-            </label>
-            <input
-              type="text"
-              className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-500"
-              placeholder="Enter address"
-              value={address}
-              required
-              onChange={(e) => setAddress(e.target.value)}
-            />
-            {errors.address && (
-              <span className="text-red-500 text-sm">{errors.address}</span>
-            )}
-          </div>
+        <div className="mt-8 bg-[#2D2D2D] p-6 rounded-xl shadow-xl border border-pink-600/20">
+          <form onSubmit={submitHandler} className="space-y-6">
+            <h1 className="text-2xl font-bold mb-4 text-gray-300">
+              Shipping Details
+            </h1>
 
-          {/* City Field */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              City
-            </label>
-            <input
-              type="text"
-              className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-500"
-              placeholder="Enter city"
-              value={city}
-              required
-              onChange={(e) => setCity(e.target.value)}
-            />
-            {errors.city && (
-              <span className="text-red-500 text-sm">{errors.city}</span>
-            )}
-          </div>
+            {/* Address Field */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-400">
+                Address
+              </label>
+              <input
+                type="text"
+                className="w-full p-3 bg-[#1A1A1A] border-2 border-pink-600 rounded-lg focus:border-pink-500 focus:ring-0 text-gray-300 placeholder-gray-500"
+                placeholder="Enter street address"
+                value={address}
+                required
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              {errors.address && (
+                <span className="text-red-400 text-sm">{errors.address}</span>
+              )}
+            </div>
 
-          {/* Postal Code Field */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Postal Code
-            </label>
-            <input
-              type="text"
-              className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-500"
-              placeholder="Enter postal code"
-              value={postalCode}
-              required
-              onChange={(e) => setPostalCode(e.target.value)}
-            />
-            {errors.postalCode && (
-              <span className="text-red-500 text-sm">{errors.postalCode}</span>
-            )}
-          </div>
+            {/* City Field */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-400">
+                City
+              </label>
+              <input
+                type="text"
+                className="w-full p-3 bg-[#1A1A1A] border-2 border-pink-600 rounded-lg focus:border-pink-500 focus:ring-0 text-gray-300 placeholder-gray-500"
+                placeholder="Enter city"
+                value={city}
+                required
+                onChange={(e) => setCity(e.target.value)}
+              />
+              {errors.city && (
+                <span className="text-red-400 text-sm">{errors.city}</span>
+              )}
+            </div>
 
-          {/* Country Field */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Country
-            </label>
-            <input
-              type="text"
-              className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-500"
-              placeholder="Enter country"
-              value={country}
-              required
-              onChange={(e) => setCountry(e.target.value)}
-            />
-            {errors.country && (
-              <span className="text-red-500 text-sm">{errors.country}</span>
-            )}
-          </div>
+            {/* Postal Code Field */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-400">
+                Postal Code
+              </label>
+              <input
+                type="text"
+                className="w-full p-3 bg-[#1A1A1A] border-2 border-pink-600 rounded-lg focus:border-pink-500 focus:ring-0 text-gray-300 placeholder-gray-500"
+                placeholder="Enter postal code"
+                value={postalCode}
+                required
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
+              {errors.postalCode && (
+                <span className="text-red-400 text-sm">
+                  {errors.postalCode}
+                </span>
+              )}
+            </div>
 
-          {/* Payment Method Selection */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700">
-              Select Method
-            </label>
-            <div className="mt-2">
-              <label className="inline-flex items-center">
+            {/* Country Field */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-400">
+                Country
+              </label>
+              <input
+                type="text"
+                className="w-full p-3 bg-[#1A1A1A] border-2 border-pink-600 rounded-lg focus:border-pink-500 focus:ring-0 text-gray-300 placeholder-gray-500"
+                placeholder="Enter country"
+                value={country}
+                required
+                onChange={(e) => setCountry(e.target.value)}
+              />
+              {errors.country && (
+                <span className="text-red-400 text-sm">{errors.country}</span>
+              )}
+            </div>
+
+            {/* Payment Method Selection */}
+            <div className="space-y-4">
+              <label className="block text-sm font-medium text-gray-400">
+                Payment Method
+              </label>
+              <div className="flex items-center">
                 <input
                   type="radio"
-                  className="form-radio text-indigo-600 focus:ring focus:ring-indigo-200"
+                  className="form-radio h-4 w-4 text-pink-600 focus:ring-pink-500 border-2 border-pink-600"
                   name="paymentMethod"
                   value="PayPal"
                   checked={paymentMethod === "PayPal"}
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 />
-                <span className="ml-2 text-sm text-gray-600">
+                <span className="ml-3 text-gray-300 text-sm">
                   PayPal or Credit Card
                 </span>
-              </label>
+              </div>
             </div>
-          </div>
 
-          {/* Submit Button */}
-          <button
-            className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            type="submit"
-          >
-            Continue
-          </button>
-        </form>
+            {/* Submit Button */}
+            <button
+              className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-200"
+              type="submit"
+            >
+              Continue
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

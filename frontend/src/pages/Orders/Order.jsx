@@ -78,107 +78,164 @@ const Order = () => {
   if (error) return <Message variant="danger">{error.data.message}</Message>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="bg-white shadow-lg rounded-lg p-6 space-y-6">
-        {/* Cart Details */}
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Order Details</h2>
-          {order.orderItems.length === 0 ? (
-            <Message>Order is empty</Message>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full table-auto">
-                <thead className="border-b-2">
-                  <tr>
-                    <th className="p-2">Image</th>
-                    <th className="p-2">Product</th>
-                    <th className="p-2 text-center">Quantity</th>
-                    <th className="p-2">Unit Price</th>
-                    <th className="p-2">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {order.orderItems.map((item, index) => (
-                    <tr key={index}>
-                      <td className="p-2">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-16 h-16 object-cover"
-                        />
-                      </td>
-                      <td className="p-2">
-                        <Link
-                          to={`/product/${item.product}`}
-                          className="text-blue-500"
-                        >
-                          {item.name}
-                        </Link>
-                      </td>
-                      <td className="p-2 text-center">{item.qty}</td>
-                      <td className="p-2 text-center">{item.price}</td>
-                      <td className="p-2 text-center">
-                        ${(item.qty * item.price).toFixed(2)}
-                      </td>
+    <div className="container mx-auto px-4 py-8 min-h-screen bg-[#1A1A1A]">
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-[#2D2D2D] shadow-xl rounded-xl p-6 space-y-8 border border-pink-600/20">
+          {/* Cart Details */}
+          <div>
+            <h2 className="text-2xl font-bold mb-6 text-gray-300">
+              Order Details
+            </h2>
+            {order.orderItems.length === 0 ? (
+              <Message>Order is empty</Message>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full">
+                  <thead className="border-b-2 border-pink-600/20">
+                    <tr className="bg-pink-600/10">
+                      <th className="p-3 text-left text-sm text-gray-300 font-semibold">
+                        Image
+                      </th>
+                      <th className="p-3 text-left text-sm text-gray-300 font-semibold">
+                        Product
+                      </th>
+                      <th className="p-3 text-center text-sm text-gray-300 font-semibold">
+                        Quantity
+                      </th>
+                      <th className="p-3 text-left text-sm text-gray-300 font-semibold">
+                        Unit Price
+                      </th>
+                      <th className="p-3 text-left text-sm text-gray-300 font-semibold">
+                        Total
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-
-        {/* Payment Summary */}
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
-          <div className="space-y-4">
-            <div className="flex justify-between">
-              <span>Items</span>
-              <span>${order.itemsPrice}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Shipping</span>
-              <span>${order.shippingPrice}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Tax</span>
-              <span>${order.taxPrice}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Total</span>
-              <span>${order.totalPrice}</span>
-            </div>
-
-            {!order.isPaid && (
-              <div>
-                {loadingPay && <Loader />}
-                {isPending ? (
-                  <Loader />
-                ) : (
-                  <PayPalButtons
-                    createOrder={createOrder}
-                    onApprove={onApprove}
-                    onError={onError}
-                  />
-                )}
+                  </thead>
+                  <tbody>
+                    {order.orderItems.map((item, index) => (
+                      <tr
+                        key={index}
+                        className="hover:bg-pink-600/5 transition-colors border-b border-pink-600/20 last:border-0"
+                      >
+                        <td className="p-3">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-16 h-16 object-cover rounded-md border border-gray-600"
+                          />
+                        </td>
+                        <td className="p-3">
+                          <Link
+                            to={`/product/${item.product}`}
+                            className="text-pink-500 hover:text-pink-400 transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        </td>
+                        <td className="p-3 text-center text-gray-400">
+                          {item.qty}
+                        </td>
+                        <td className="p-3 text-gray-400">
+                          {item.price.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                          })}
+                        </td>
+                        <td className="p-3 text-gray-300 font-semibold">
+                          {(item.qty * item.price).toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                          })}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             )}
+          </div>
 
-            {loadingDeliver && <Loader />}
-            {userInfo &&
-              userInfo.isAdmin &&
-              order.isPaid &&
-              !order.isDelivered && (
-                <div>
-                  <button
-                    type="button"
-                    className="bg-pink-500 text-white w-full py-2 rounded-md"
-                    onClick={deliverHandler}
-                  >
-                    Mark As Delivered
-                  </button>
+          {/* Payment Summary */}
+          <div>
+            <h2 className="text-2xl font-bold mb-6 text-gray-300">
+              Order Summary
+            </h2>
+            <div className="space-y-4">
+              <div className="flex justify-between text-gray-400">
+                <span>Items</span>
+                <span>
+                  {order.itemsPrice.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </span>
+              </div>
+              <div className="flex justify-between text-gray-400">
+                <span>Shipping</span>
+                <span>
+                  {order.shippingPrice.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </span>
+              </div>
+              <div className="flex justify-between text-gray-400">
+                <span>Tax</span>
+                <span>
+                  {order.taxPrice.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </span>
+              </div>
+              <div className="flex justify-between text-gray-300 font-semibold pt-4 border-t border-pink-600/20">
+                <span>Total</span>
+                <span>
+                  {order.totalPrice.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </span>
+              </div>
+
+              {!order.isPaid && (
+                <div className="pt-6">
+                  {loadingPay && <Loader />}
+                  {isPending ? (
+                    <Loader />
+                  ) : (
+                    <div className="bg-[#1A1A1A] p-4 rounded-xl">
+                      <PayPalButtons
+                        createOrder={createOrder}
+                        onApprove={onApprove}
+                        onError={onError}
+                        style={{
+                          color: "gold",
+                          layout: "horizontal",
+                          height: 48,
+                          tagline: false,
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
               )}
+
+              {loadingDeliver && <Loader />}
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <div className="pt-6">
+                    <button
+                      type="button"
+                      className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-200"
+                      onClick={deliverHandler}
+                    >
+                      Mark As Delivered
+                    </button>
+                  </div>
+                )}
+            </div>
           </div>
         </div>
       </div>
