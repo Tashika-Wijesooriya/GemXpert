@@ -1,141 +1,161 @@
-# 🛒 GemXpert - MERN E-Commerce Platform
+
+# 💎 GemXpert - AI-Powered Gem Marketplace
 
 [![MERN Stack](https://img.shields.io/badge/MERN-Full%20Stack-blue?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/mern-stack)
-[![PayPal Integration](https://img.shields.io/badge/Payment-PayPal-00457C?style=flat&logo=paypal)](https://developer.paypal.com)
-[![JWT Auth](https://img.shields.io/badge/Security-JWT-000000?style=flat&logo=jsonwebtokens)](https://jwt.io)<br>
+[![AI Verification](https://img.shields.io/badge/AI-Gem%20Verification-FF6F00?style=flat&logo=openai)](https://arxiv.org/abs/2108.07258)
+[![PayPal](https://img.shields.io/badge/Payments-Powered%20by%20PayPal-00457C?style=flat&logo=paypal)](https://developer.paypal.com)
 
-A full-stack Gem e-commerce platform built with modern technologies, featuring secure payments, admin dashboard, and real-time analytics.<br>
+🌐 *"Empowering gem enthusiasts with AI-driven authenticity checks and a trusted marketplace for verified gems."*
 
-![Project Banner](https://via.placeholder.com/1280x500.png?text=GemXpert+E-Commerce+Demo) <!-- Add actual screenshots later -->
+![GemXpert Demo](https://via.placeholder.com/1280x500.png?text=GemXpert+AI+Marketplace+Preview)
+
+---
 
 ## ✨ Key Features
 
-### 👨💻 User & Auth
-- JWT Authentication with HTTP-only cookies
-- User profile management
-- Order history tracking
-- Favorite products collection
+### 🔬 Core Capabilities
+- **AI-Powered Gem Identification**  
+  🧠 Deep learning model for classifying 20+ gem types  
+  📊 Quality analysis compared to certified standards  
+  🧪 Real-time verification through image inputs
 
-### 💎 Products & Store
-- Product catalog with filters (category, price)
-- Advanced search functionality
-- Product reviews and ratings
-- Image upload for product listings
+### 🛍️ Marketplace Tools
+- **For Sellers**  
+  💎 Add gem listings with certification uploads  
+  📸 Upload high-res images for buyer inspection  
+  📈 Dashboard with sales + traffic analytics
 
-### 🛒 Cart & Payments
-- Persistent shopping cart
-- Multiple payment methods
-- Order summary & invoice
-- PayPal Sandbox integration
+- **For Buyers**  
+  🔎 Filter search by gem type, origin, clarity, etc.  
+  📖 See full provenance and verification history  
+  ⭐ Save to wishlist or personal collection
 
-### 📊 Admin Dashboard
-- Sales analytics with ApexCharts
-- Product & category management
-- User role management
-- Order fulfillment tracking
+### 👥 User & Account System
+- 👤 Role-based users (Admin, Seller, Buyer)  
+- 📍 Multi-address management  
+- 🔔 Notifications for price drops & gem status
+
+### 🛒 Secure Transactions
+- 💳 **PayPal integration** for safe payments  
+- 📦 Order tracking & shipping with insurance  
+- 🧾 Automated invoices and receipts  
+- ⚖️ Dispute management system
+
+---
 
 ## 🛠 Tech Stack
 
 ### Frontend
-| Technology | Purpose |
-|------------|---------|
-| ⚛️ React 18 | Core framework |
-| 🎨 Tailwind CSS | Styling & theming |
-| 🚀 Vite | Build tooling |
-| 🔄 Redux Toolkit | State management |
-| 📈 ApexCharts | Data visualization |
+| Module            | Tech                     |
+|------------------|--------------------------|
+| Framework        | React 18 + Vite          |
+| State Management | Redux Toolkit            |
+| Styling          | Tailwind CSS + Flowbite  |
+| Charts           | ApexCharts               |
+| Payments         | **PayPal REST API**      |
 
 ### Backend
-| Technology | Purpose |
-|------------|---------|
-| 🟢 Node.js | Runtime environment |
-| 🚆 Express.js | API framework |
-| 🍃 MongoDB | Database |
-| 🐪 Mongoose | ODM |
-| 🔑 JWT | Authentication |
+| Module            | Tech                     |
+|------------------|--------------------------|
+| Server           | Node.js + Express        |
+| Database         | MongoDB + Mongoose       |
+| Auth             | JWT + Secure Cookies     |
+| AI Integration   | Python (via API bridge)  |
+| Image Uploads    | Cloudinary API           |
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js v16+ & npm
-- MongoDB Atlas account
-- PayPal Developer credentials
+- Node.js v18+
+- MongoDB Atlas Cluster
+- Python 3.10+ for AI model
+- Cloudinary account
+- PayPal Developer account
 
-### Installation
+### 1️⃣ Clone the Repo
 
-1. **Clone Repository**
+```bash
+git clone https://github.com/swiz9/GemXpert.git
+cd GemXpert
+```
 
-git clone https://github.com/swiz9/GemXpert.git<br>
-cd main
+### 2️⃣ Set Up Environment Variables
 
-2. **Configure Environment**
-Create `.env` in `/backend`:
+Create a `.env` file in the `backend/` folder:
 
-MONGO_URI=mongodb+srv://<user>:<password>@cluster0.example.mongodb.net/gemxpert<br>
-JWT_SECRET=your_ultra_secure_secret<br>
-PAYPAL_CLIENT_ID=your_paypal_sandbox_id<br>
+```env
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+PAYPAL_CLIENT_ID=your_paypal_client_id
+CLOUDINARY_URL=your_cloudinary_url
+```
 
- 3. **Install Dependencies**
+### 3️⃣ Install Dependencies
 
+```bash
 # Backend
-cd backend && npm install
+cd backend
+npm install
 
 # Frontend
-cd ../frontend && npm install
+cd ../frontend
+npm install
+```
 
+### 4️⃣ Run the App
 
-### Running the Application
-
-# Start backend (from /backend)
+```bash
+# Backend
+cd backend
 npm run dev
 
-# Start frontend (from /frontend)
+# Frontend
+cd ../frontend
 npm run dev
+```
 
-
-Access the app at:
 - Frontend: `http://localhost:5173`
-- Backend API: `http://localhost:5000/api`
+- API Server: `http://localhost:5000/api`
+
+---
 
 ## 📂 Project Structure
 
-gemxpert/<br>
-├── backend/<br>
-│   ├── config/       # Database configuration<br>
-│   ├── controllers/  # Business logic<br>
-│   ├── middleware/   # Auth handlers<br>
-│   ├── models/       # MongoDB schemas<br>
-│   ├── routes/       # API endpoints<br>
-│   └── server.js     # Entry point<br>
-└── frontend/<br>
-    ├── public/       # Static assets<br>
-    └── src/<br>
-        ├── assets/   # Images & styles<br>
-        ├── components/ # Reusable UI<br>
-        ├── features/  # Redux slices<br>
-        ├── pages/     # Route components<br>
-        └── App.jsx    # Root component<br>
+```
+gemxpert/
+├── ai_models/            # Machine learning models
+│   └── gem_classifier.py
+├── backend/              # API server
+│   ├── controllers/
+│   ├── ml_integration/
+│   ├── models/
+│   ├── routes/
+│   └── server.js
+├── frontend/             # Client app
+│   └── src/
+│       ├── features/     # Redux slices
+│       ├── gem-viewer/   # 360° gem viewer
+│       └── payment/      # Checkout & PayPal
+```
 
 
-## 📸 Demo Preview
-
-| User View | Admin Dashboard |
-|-----------|-----------------|
-| ![User Interface](https://via.placeholder.com/400x250.png?text=Product+Page) | ![Admin Panel](https://via.placeholder.com/400x250.png?text=Sales+Analytics) |
-
+---
 
 ## 🤝 Contributors
 
-- **[Anuradha Srimal](https://github.com/swiz9)** (@swiz9)  
-  🧠 *AI-Powered Gem Analysis* - Developed smart verification system using machine learning for gem classification
+| Name                      | GitHub                                | Role                                              |
+|---------------------------|----------------------------------------|---------------------------------------------------|
+| Anuradha Srimal           | [@swiz9](https://github.com/swiz9)     | 🧠 AI Model + Gem Verification Logic               |
+| vihangait22902252         | [@vihangait22902252](https://github.com/vihangait22902252) | 💎 Marketplace + Catalog System     |
+| Tashika Wijesooriya       | [@Tashika-Wijesooriya](https://github.com/Tashika-Wijesooriya) | 🛒 Checkout + PayPal Integration |
+| Chamodi Rathnayake        | [@ChamodiRathnayake](https://github.com/ChamodiRathnayake) | 👤 User Roles + Auth System          |
 
-- **[vihangait22902252](https://github.com/vihangait22902252)** (@vihangait22902252)  
-  💎 *Gem Collection System* - Implemented gem catalog management and inventory tracking features
+---
 
-- **[Tashika Wijesooriya](https://github.com/Tashika-Wijesooriya)** (@Tashika-Wijesooriya)  
-  🛒 *Cart Management* - Built shopping cart functionality with persistent storage and checkout integration
+## 📄 License
 
-- **[Chamodi Wijesekara](https://github.com/ChamodiRathnayeka)** (@ChamodiRathnayake)  
-  👤 *User Management* - Implemented authentication system with JWT, user registration, and role-based access control
-
+MIT © 2025 @swiz9 @vihangait22902252 @Tashika-Wijesooriya @ChamodiRathnayake
 
