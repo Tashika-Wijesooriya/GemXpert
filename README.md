@@ -126,9 +126,16 @@ gemxpert/<br>
 
 ## 🤝 Contributors
 
-- [Anuradha Srimal](https://github.com/swiz9) (@swiz9)
-- [vihangait22902252](https://github.com/vihangait22902252) (@vihangait22902252)
-- [Tashika Wijesooriya](https://github.com/Tashika-Wijesooriya) (@Tashika-Wijesooriya)
+- **[Anuradha Srimal](https://github.com/swiz9)** (@swiz9)  
+  🧠 *AI-Powered Gem Analysis* - Developed smart verification system using machine learning for gem classification
 
+- **[vihangait22902252](https://github.com/vihangait22902252)** (@vihangait22902252)  
+  💎 *Gem Collection System* - Implemented gem catalog management and inventory tracking features
+
+- **[Tashika Wijesooriya](https://github.com/Tashika-Wijesooriya)** (@Tashika-Wijesooriya)  
+  🛒 *Cart Management* - Built shopping cart functionality with persistent storage and checkout integration
+
+- **[Chamodi Wijesekara](https://github.com/ChamodiRathnayeka)** (@ChamodiRathnayake)  
+  👤 *User Management* - Implemented authentication system with JWT, user registration, and role-based access control
 
 
