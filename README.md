@@ -87,7 +87,7 @@ Create a `.env` file in the `backend/` folder:
 
 ```env
 PORT=5000
-MONGO_URI=your_mongodb_uri
+MONGO_URL=your_mongodb_url
 JWT_SECRET=your_jwt_secret
 PAYPAL_CLIENT_ID=your_paypal_client_id
 CLOUDINARY_URL=your_cloudinary_url
@@ -122,27 +122,6 @@ npm run dev
 
 ---
 
-## 📂 Project Structure
-
-```
-gemxpert/
-├── ai_models/            # Machine learning models
-│   └── gem_classifier.py
-├── backend/              # API server
-│   ├── controllers/
-│   ├── ml_integration/
-│   ├── models/
-│   ├── routes/
-│   └── server.js
-├── frontend/             # Client app
-│   └── src/
-│       ├── features/     # Redux slices
-│       ├── gem-viewer/   # 360° gem viewer
-│       └── payment/      # Checkout & PayPal
-```
-
-
----
 
 ## 🤝 Contributors
 
@@ -153,9 +132,7 @@ gemxpert/
 | Tashika Wijesooriya       | [@Tashika-Wijesooriya](https://github.com/Tashika-Wijesooriya) | 🛒 Checkout + PayPal Integration |
 | Chamodi Rathnayake        | [@ChamodiRathnayake](https://github.com/ChamodiRathnayake) | 👤 User Roles + Auth System          |
 
----
 
-## 📄 License
 
-MIT © 2025 @swiz9 @vihangait22902252 @Tashika-Wijesooriya @ChamodiRathnayake
+
 
